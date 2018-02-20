@@ -1,0 +1,16 @@
+import numpy as np
+import nibabel as nib
+
+# load a .nii.gz format image
+img = nib.load(file_name)
+# get data in a numpy array
+img_data = img.get_data()
+# covert data into float32 datatype
+I32 = np.float32(img_data)
+# convert it back to float64
+I64 = np.float64(I32)
+# flag should be true if there is no dataloss
+flag = np.allclose(I64, img_data)
+if flag == 'false':
+	print 'data lossed after converting to float32'	
+	break
